@@ -54,3 +54,13 @@ resource "aws_subnet" "tf-food-pvt-sn-B" {
   }
 }
 
+
+
+##CREATE INTERNET_GATEWAY
+resource "aws_internet_gateway" "tf-food-igw" {
+  vpc_id = aws_vpc.Tf-food.id
+
+  tags = {
+    Name = "food-igw"
+  }
+}
