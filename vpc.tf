@@ -64,3 +64,27 @@ resource "aws_internet_gateway" "tf-food-igw" {
     Name = "food-igw"
   }
 }
+
+# Create Public Route Table
+resource "aws_route_table" "tf-food-pub-rt" {
+  vpc_id = aws_vpc.Tf-food.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.tf-food-igw.id
+  }
+
+  tags = {
+    Name = "food-pub-rt"
+  }
+}
+
+# Create Private Route Table
+resource "aws_route_table" "tf-food-pvt-rt" {
+  vpc_id = aws_vpc.Tf-food.id
+
+  tags = {
+    Name = "food-prv-rt"
+  }
+}
+
