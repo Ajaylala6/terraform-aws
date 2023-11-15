@@ -88,3 +88,13 @@ resource "aws_route_table" "tf-food-pvt-rt" {
   }
 }
 
+# Create Public Associations 
+resource "aws_route_table_association" "tf-food-pub-asc-A" {
+  subnet_id      = aws_subnet.tf-food-subnet-1.id
+  route_table_id = aws_route_table.tf-food-pub-rt.id
+}
+
+resource "aws_route_table_association" "tf-food-pub-asc-B" {
+  subnet_id      = aws_subnet.tf-food-subnet-2.id
+  route_table_id = aws_route_table.tf-food-pub-rt.id
+}
