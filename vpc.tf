@@ -31,3 +31,26 @@ resource "aws_subnet" "tf-food-subnet-2" {
     Name = "Tf-pub-sub-1"
   }
 }
+
+# Create Pvt Subnet -A
+resource "aws_subnet" "tf-food-pvt-sn-A" {
+  vpc_id     = aws_vpc.Tf-food.id
+  cidr_block = "192.168.2.0/24"
+  availability_zone = "ap-south-1b"
+  map_public_ip_on_launch = "false"
+  tags = {
+    Name = "food-private-subnet-A"
+  }
+}
+
+# Create Pvt Subnet -B
+resource "aws_subnet" "tf-food-pvt-sn-B" {
+  vpc_id     = aws_vpc.Tf-food.id
+  cidr_block = "192.168.3.0/24"
+  availability_zone = "ap-south-1c"
+  map_public_ip_on_launch = "false"
+  tags = {
+    Name = "food-private-subnet-B"
+  }
+}
+
