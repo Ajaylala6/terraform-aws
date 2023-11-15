@@ -109,3 +109,58 @@ resource "aws_route_table_association" "tf-food-pvt-asc-B" {
   subnet_id      = aws_subnet.tf-food-pvt-sn-B.id
   route_table_id = aws_route_table.tf-food-pvt-rt.id
 }
+
+# Create Public NACL
+resource "aws_network_acl" "tf-food-pub-nacl" {
+  vpc_id = aws_vpc.Tf-food.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "food-public-nacl"
+  }
+}
+
+# Create Private NACL
+resource "aws_network_acl" "tf-food-pvt-nacl" {
+  vpc_id = aws_vpc.Tf-food.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "food-private-nacl"
+  }
+}
+
