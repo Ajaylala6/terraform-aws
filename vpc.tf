@@ -175,3 +175,15 @@ resource "aws_network_acl_association" "tf-food-pub-nacl-asc-B" {
   network_acl_id = aws_network_acl.tf-food-pub-nacl.id
   subnet_id      = aws_subnet.tf-food-subnet-2.id
 }
+
+
+# Create NACL - Private - Association
+resource "aws_network_acl_association" "tf-food-pvt-nacl-asc-A" {
+  network_acl_id = aws_network_acl.tf-food-pvt-nacl.id
+  subnet_id      = aws_subnet.tf-food-pvt-sn-A.id
+}
+
+resource "aws_network_acl_association" "tf-food-pvt-nacl-asc-B" {
+  network_acl_id = aws_network_acl.tf-food-pvt-nacl.id
+  subnet_id      = aws_subnet.tf-food-pvt-sn-B.id
+}
